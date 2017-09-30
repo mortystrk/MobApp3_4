@@ -10,4 +10,9 @@ public class Listener extends Person {
         super(name, age);
         this.organization = Organization.valueOf(organization);
     }
+
+    @Override
+    public String toString(){
+        return "class Listener";
+    }
 }
