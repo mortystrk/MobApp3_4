@@ -16,6 +16,11 @@ public class Student extends Person {
         this.group = group;
     }
 
+    public void getInfo(){
+        System.out.println("Name: " + this.name + "\nUniversity: " + this.university
+                            + "\nGroup: " + this.group);
+    }
+
     @Override
     public String toString(){
         return "class Student";

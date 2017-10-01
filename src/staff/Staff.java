@@ -1,5 +1,6 @@
 package staff;
 
+import exception.EduException;
 import units.Listener;
 import units.Person;
 import units.Student;
@@ -20,11 +21,36 @@ public class Staff {
         studlist = new ArrayList<>(persons);
     }
 
-    public void Add(Person person){
-        studlist.add(person);
+    public boolean add(Person person) throws EduException{
+        try{
+            if(!studlist.add(person)){
+                if(person instanceof Student){
+                    throw new EduException(true);
+                }
+                else{
+                    throw new EduException(false);
+                }
+            }
+            else {
+                return true;
+            }
+        } catch (EduException e){
+            if(e.isFlag()){
+                e.toString();
+                e.getStudent((Student) person);
+                return false;
+            }
+            else {
+                e.toString();
+                e.getListener((Listener) person);
+                return false;
+            }
+        }
     }
 
-    public void PrintList(){
+    
+
+    public void printList(){
         for(Person person : studlist){
             if(person instanceof Student){
                 System.out.println(((Student) person).toString());
