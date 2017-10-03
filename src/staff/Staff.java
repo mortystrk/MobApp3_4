@@ -21,34 +21,11 @@ public class Staff {
         studlist = new ArrayList<>(persons);
     }
 
-    public boolean add(Person person) throws EduException{
-        try{
-            if(!studlist.add(person)){
-                if(person instanceof Student){
-                    throw new EduException(true);
-                }
-                else{
-                    throw new EduException(false);
-                }
-            }
-            else {
-                return true;
-            }
-        } catch (EduException e){
-            if(e.isFlag()){
-                e.toString();
-                e.getStudent((Student) person);
-                return false;
-            }
-            else {
-                e.toString();
-                e.getListener((Listener) person);
-                return false;
-            }
-        }
-    }
+    //public boolean add(Person person) throws EduException{
 
-    
+    //}
+
+
 
     public void printList(){
         for(Person person : studlist){

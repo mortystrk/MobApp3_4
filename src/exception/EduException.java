@@ -1,30 +1,21 @@
 package exception;
 
-import units.Listener;
-import units.Person;
-import units.Student;
+/**
+ * Создание собственного класса исключений
+ */
 
 public class EduException extends Exception {
 
-    boolean flag;
+    private int number;
 
-    public EduException(boolean flag){
-        this.flag = flag;
+    public int getNumber(){
+        return number;
     }
 
-    public void getStudent(Student student){
-        student.getInfo();
+    public EduException(String message, int number){
+        super(message);
+        this.number = number;
     }
 
-    public void getListener(Listener listener){
-        listener.getInfo();
-    }
 
-    public boolean isFlag() {
-        return flag;
-    }
-
-    public String toString(){
-        return "Невозможно добавить участника курса";
-    }
 }
