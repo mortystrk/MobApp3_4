@@ -11,6 +11,10 @@ public class Listener extends Person {
         this.organization = Organization.valueOf(organization);
     }
 
+    public int getPrice(){
+        return organization.getPrice();
+    }
+
     @Override
     public String toString(){
         return "class Listener";

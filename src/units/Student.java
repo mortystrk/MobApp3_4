@@ -1,16 +1,11 @@
 package units;
 
-import university.University;
-
 public class Student extends Person {
 
-    University university;
     double rating;
 
-    public Student(String name, int age, String university,
-                   double rating) {
+    public Student(String name, int age, double rating) {
         super(name, age);
-        this.university = University.valueOf(university);
         this.rating = rating;
     }
 

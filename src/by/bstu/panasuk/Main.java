@@ -20,7 +20,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
 
-      
+
         JSONParser parser = new JSONParser();
         Reader reader = new FileReader("students.json");
         Object jsonObj = parser.parse(reader);
