@@ -17,6 +17,9 @@ public class Listener extends Person {
 
     @Override
     public String toString(){
-        return "class Listener";
+
+        StringBuilder string = new StringBuilder();
+        string.append(this.name + " " + this.age + " " + organization.toString());
+        return string.toString();
     }
 }

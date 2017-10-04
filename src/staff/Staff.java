@@ -39,6 +39,16 @@ public class Staff {
     public List<Person> getStudlist() {
         return studlist;
     }
+    
+    public List<Student> getStudents(){
+        ArrayList<Student> students = new ArrayList<>();
+        for(Person person : studlist){
+            if(person instanceof Student){
+                students.add((Student) person);
+            }
+        }
+        return students;
+    }
 
     /**
      * Устанавливает список участников курса
@@ -51,6 +61,12 @@ public class Staff {
 
     public void add (Person item) {
         studlist.add(item);
+    }
+
+    public void add(Staff persons){
+        for(Person person : persons.getStudlist()){
+            studlist.add(person);
+        }
     }
 
     public void remove (Person item)

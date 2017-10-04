@@ -4,5 +4,11 @@
 	{"name":"Petya", "age":19, "rating":20},
 	{"name":"Olya", "age":18, "rating":35},
 	{"name":"Sveta", "age":20, "rating":15}
+],
+	"listeners" : [
+	{"name":"Vasya", "age":18, "organization":"MegaTech"},
+	{"name":"Oleg", "age":20, "organization":"UltraLine"},
+	{"name":"Yura", "age":35, "organization":"MegaTech"},
+	{"name":"Tolya", "age":24, "organization":"ITclub"},
 ]
 }

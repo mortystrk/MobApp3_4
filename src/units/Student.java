@@ -1,16 +1,24 @@
 package units;
 
-public class Student extends Person {
+public class Student extends Person{
 
-    double rating;
+    private double rating;
 
     public Student(String name, int age, double rating) {
         super(name, age);
         this.rating = rating;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
     @Override
     public String toString(){
-        return "class Student";
+
+        StringBuilder string = new StringBuilder();
+        string.append(this.name + " " + this.age + " " + getRating());
+        return string.toString();
     }
+
 }

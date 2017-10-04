@@ -5,13 +5,16 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import random.RandomPersons;
 import staff.Staff;
 import units.Listener;
+import units.Person;
 import units.Student;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Comparator;
 
 public class Manager implements IAction {
 
@@ -39,9 +42,9 @@ public class Manager implements IAction {
     }
 
     /**
-     * Получение
-     * @param staff
-     * @param jsonObject
+     * Получение списка слушателей из файла JSON
+     * @param staff курс, содержащий участников
+     * @param jsonObject объект JSON
      */
 
     private void getJsonListeners(Staff staff, JSONObject jsonObject) {
@@ -56,30 +59,61 @@ public class Manager implements IAction {
         }
     }
 
+    /**
+     * Получение списка студентов из файла JSON
+     * @param staff курс, содержащий участников
+     * @param jsonObject объект JSON
+     */
+
     private void getJsonStudents(Staff staff, JSONObject jsonObject) {
         JSONArray students = (JSONArray) jsonObject.get("students");
         for (Object student1 : students) {
             JSONObject student = (JSONObject) student1;
             String name = (String) student.get("name");
             long age = (Long) student.get("age");
-            double rating = (Double) student.get("rating");
+            long rating = (Long) student.get("rating");
             System.out.println(name + " " + " " + age + " " + rating);
             staff.add(new Student(name, (int) age, rating));
         }
     }
 
+    /**
+     * Генерация курса
+     * @param maxStudentsCount максимальное число студентов
+     * @param maxListenersCount максимальное число слушателей
+     * @return курс участников
+     * @throws EduException работа EduException
+     */
     @Override
-    public Staff generateCourse(int masStudentsCount, int maxListenersCount) throws EduException {
-        return null;
+    public Staff generateCourse(int maxStudentsCount, int maxListenersCount) throws EduException {
+
+        if(maxStudentsCount < 0 || maxListenersCount < 0){
+            throw new EduException("EduException in generateCourse", 1);
+        }
+
+        Staff staff = new Staff();
+        for (int i = 0; i < maxStudentsCount; i++) {
+            staff.add(RandomPersons.randomStudent());
+        }
+        for (int i = 0; i < maxListenersCount; i++) {
+            staff.add((RandomPersons.randomListener()));
+        }
+
+        return staff;
     }
 
+    /**
+     * @param someCourse курс, содержащий участников
+     * @return количество слушателей курса
+     */
     @Override
     public int getCountListeners(Staff someCourse) {
-        return 0;
+        return someCourse.getStudlist().size();
     }
 
     @Override
-    public Staff sortStudentsByYear(Staff someCourse) {
-        return null;
+    public Staff sortStudentsByYaer(Staff someCourse) {
+        someCourse.getStudlist().sort(Comparator.comparingInt(Person::getAge));
+        return someCourse;
     }
 }

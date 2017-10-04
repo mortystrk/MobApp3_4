@@ -10,6 +10,12 @@ public interface IAction {
     Staff createGroup(String filename);
     Staff generateCourse(int masStudentsCount, int maxListenersCount) throws EduException;
 
+    /**
+     * Реализация метода интерфейса по умолчанию
+     * @param someCourse курс, содержащи участников
+     * @return общая сумма за прослушивание курса
+     */
+
     default int calculationAmountPayments(Staff someCourse) {
         int totalPayment = 0;
         for(Person person : someCourse.getStudlist()){
@@ -21,5 +27,5 @@ public interface IAction {
     }
 
     int getCountListeners(Staff someCourse);
-    Staff sortStudentsByYear(Staff someCourse);
+    Staff sortStudentsByYaer(Staff someCourse);
 }
